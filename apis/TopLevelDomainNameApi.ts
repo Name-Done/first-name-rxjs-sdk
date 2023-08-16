@@ -20,29 +20,29 @@ import type {
     NameResponseDto,
 } from '../models';
 
-export interface GetFamilyNamesRequest {
+export interface GetTopLevelDomainNamesRequest {
     name: string;
 }
 
 /**
  * no description
  */
-export class FamilyNameApi extends BaseAPI {
+export class TopLevelDomainNameApi extends BaseAPI {
 
     /**
-     * Get a list of family names
+     * Get a list of top level domain names
      */
-    getFamilyNames({ name }: GetFamilyNamesRequest): Observable<NameResponseDto>
-    getFamilyNames({ name }: GetFamilyNamesRequest, opts?: OperationOpts): Observable<AjaxResponse<NameResponseDto>>
-    getFamilyNames({ name }: GetFamilyNamesRequest, opts?: OperationOpts): Observable<NameResponseDto | AjaxResponse<NameResponseDto>> {
-        throwIfNullOrUndefined(name, 'name', 'getFamilyNames');
+    getTopLevelDomainNames({ name }: GetTopLevelDomainNamesRequest): Observable<NameResponseDto>
+    getTopLevelDomainNames({ name }: GetTopLevelDomainNamesRequest, opts?: OperationOpts): Observable<AjaxResponse<NameResponseDto>>
+    getTopLevelDomainNames({ name }: GetTopLevelDomainNamesRequest, opts?: OperationOpts): Observable<NameResponseDto | AjaxResponse<NameResponseDto>> {
+        throwIfNullOrUndefined(name, 'name', 'getTopLevelDomainNames');
 
         const query: HttpQuery = { // required parameters are used directly since they are already checked by throwIfNullOrUndefined
             'name': name,
         };
 
         return this.request<NameResponseDto>({
-            url: '/name/family',
+            url: '/name/top-level-domain',
             method: 'GET',
             query,
         }, opts?.responseOpts);

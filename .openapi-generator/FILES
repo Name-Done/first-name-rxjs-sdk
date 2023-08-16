@@ -4,6 +4,7 @@ README.md
 apis/EmailDomainNameApi.ts
 apis/FamilyNameApi.ts
 apis/GivenNameApi.ts
+apis/TopLevelDomainNameApi.ts
 apis/index.ts
 index.ts
 models/BadRequestResponseDto.ts
