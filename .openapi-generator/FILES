@@ -1,8 +1,10 @@
 .gitignore
 .openapi-generator-ignore
 README.md
+apis/DomainNameApi.ts
 apis/EmailDomainNameApi.ts
 apis/FamilyNameApi.ts
+apis/GenderApi.ts
 apis/GivenNameApi.ts
 apis/TopLevelDomainNameApi.ts
 apis/index.ts

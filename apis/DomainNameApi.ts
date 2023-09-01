@@ -20,44 +20,32 @@ import type {
     NameResponseDto,
 } from '../models';
 
-export interface GetGivenNamesRequest {
+export interface GetDomainNamesRequest {
     name: string;
-    gender?: GetGivenNamesGenderEnum;
 }
 
 /**
  * no description
  */
-export class GivenNameApi extends BaseAPI {
+export class DomainNameApi extends BaseAPI {
 
     /**
-     * Get a list of given names
+     * Get a list of domain names
      */
-    getGivenNames({ name, gender }: GetGivenNamesRequest): Observable<NameResponseDto>
-    getGivenNames({ name, gender }: GetGivenNamesRequest, opts?: OperationOpts): Observable<AjaxResponse<NameResponseDto>>
-    getGivenNames({ name, gender }: GetGivenNamesRequest, opts?: OperationOpts): Observable<NameResponseDto | AjaxResponse<NameResponseDto>> {
-        throwIfNullOrUndefined(name, 'name', 'getGivenNames');
+    getDomainNames({ name }: GetDomainNamesRequest): Observable<NameResponseDto>
+    getDomainNames({ name }: GetDomainNamesRequest, opts?: OperationOpts): Observable<AjaxResponse<NameResponseDto>>
+    getDomainNames({ name }: GetDomainNamesRequest, opts?: OperationOpts): Observable<NameResponseDto | AjaxResponse<NameResponseDto>> {
+        throwIfNullOrUndefined(name, 'name', 'getDomainNames');
 
         const query: HttpQuery = { // required parameters are used directly since they are already checked by throwIfNullOrUndefined
             'name': name,
         };
 
-        if (gender != null) { query['gender'] = gender; }
-
         return this.request<NameResponseDto>({
-            url: '/name/given',
+            url: '/name/domain',
             method: 'GET',
             query,
         }, opts?.responseOpts);
     };
 
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum GetGivenNamesGenderEnum {
-    Male = 'male',
-    Female = 'female'
 }
