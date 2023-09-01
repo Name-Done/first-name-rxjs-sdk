@@ -13,7 +13,7 @@
 
 import type { Observable } from 'rxjs';
 import type { AjaxResponse } from 'rxjs/ajax';
-import { BaseAPI, throwIfNullOrUndefined } from '../runtime';
+import { BaseAPI } from '../runtime';
 import type { OperationOpts, HttpQuery } from '../runtime';
 import type {
     BadRequestResponseDto,
@@ -21,7 +21,7 @@ import type {
 } from '../models';
 
 export interface GetGendersRequest {
-    name: string;
+    name?: string;
 }
 
 /**
@@ -35,11 +35,10 @@ export class GenderApi extends BaseAPI {
     getGenders({ name }: GetGendersRequest): Observable<NameResponseDto>
     getGenders({ name }: GetGendersRequest, opts?: OperationOpts): Observable<AjaxResponse<NameResponseDto>>
     getGenders({ name }: GetGendersRequest, opts?: OperationOpts): Observable<NameResponseDto | AjaxResponse<NameResponseDto>> {
-        throwIfNullOrUndefined(name, 'name', 'getGenders');
 
-        const query: HttpQuery = { // required parameters are used directly since they are already checked by throwIfNullOrUndefined
-            'name': name,
-        };
+        const query: HttpQuery = {};
+
+        if (name != null) { query['name'] = name; }
 
         return this.request<NameResponseDto>({
             url: '/name/gender',

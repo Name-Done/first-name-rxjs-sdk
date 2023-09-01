@@ -13,7 +13,7 @@
 
 import type { Observable } from 'rxjs';
 import type { AjaxResponse } from 'rxjs/ajax';
-import { BaseAPI, throwIfNullOrUndefined } from '../runtime';
+import { BaseAPI } from '../runtime';
 import type { OperationOpts, HttpQuery } from '../runtime';
 import type {
     BadRequestResponseDto,
@@ -21,8 +21,8 @@ import type {
 } from '../models';
 
 export interface GetGivenNamesRequest {
-    name: string;
-    gender?: GetGivenNamesGenderEnum;
+    name?: string;
+    gender?: string;
 }
 
 /**
@@ -36,12 +36,10 @@ export class GivenNameApi extends BaseAPI {
     getGivenNames({ name, gender }: GetGivenNamesRequest): Observable<NameResponseDto>
     getGivenNames({ name, gender }: GetGivenNamesRequest, opts?: OperationOpts): Observable<AjaxResponse<NameResponseDto>>
     getGivenNames({ name, gender }: GetGivenNamesRequest, opts?: OperationOpts): Observable<NameResponseDto | AjaxResponse<NameResponseDto>> {
-        throwIfNullOrUndefined(name, 'name', 'getGivenNames');
 
-        const query: HttpQuery = { // required parameters are used directly since they are already checked by throwIfNullOrUndefined
-            'name': name,
-        };
+        const query: HttpQuery = {};
 
+        if (name != null) { query['name'] = name; }
         if (gender != null) { query['gender'] = gender; }
 
         return this.request<NameResponseDto>({
@@ -51,13 +49,4 @@ export class GivenNameApi extends BaseAPI {
         }, opts?.responseOpts);
     };
 
-}
-
-/**
- * @export
- * @enum {string}
- */
-export enum GetGivenNamesGenderEnum {
-    Male = 'male',
-    Female = 'female'
 }
