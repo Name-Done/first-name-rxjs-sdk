@@ -6,6 +6,7 @@ apis/EmailDomainNameApi.ts
 apis/FamilyNameApi.ts
 apis/GenderApi.ts
 apis/GivenNameApi.ts
+apis/LanguageNameApi.ts
 apis/TopLevelDomainNameApi.ts
 apis/index.ts
 index.ts

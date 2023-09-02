@@ -20,28 +20,28 @@ import type {
     NameResponseDto,
 } from '../models';
 
-export interface GetGendersRequest {
+export interface GetLanguageNamesRequest {
     name?: string;
 }
 
 /**
  * no description
  */
-export class GenderApi extends BaseAPI {
+export class LanguageNameApi extends BaseAPI {
 
     /**
-     * Get a list of genders
+     * Get a list of language names
      */
-    getGenders({ name }: GetGendersRequest): Observable<NameResponseDto>
-    getGenders({ name }: GetGendersRequest, opts?: OperationOpts): Observable<AjaxResponse<NameResponseDto>>
-    getGenders({ name }: GetGendersRequest, opts?: OperationOpts): Observable<NameResponseDto | AjaxResponse<NameResponseDto>> {
+    getLanguageNames({ name }: GetLanguageNamesRequest): Observable<NameResponseDto>
+    getLanguageNames({ name }: GetLanguageNamesRequest, opts?: OperationOpts): Observable<AjaxResponse<NameResponseDto>>
+    getLanguageNames({ name }: GetLanguageNamesRequest, opts?: OperationOpts): Observable<NameResponseDto | AjaxResponse<NameResponseDto>> {
 
         const query: HttpQuery = {};
 
         if (name != null) { query['name'] = name; }
 
         return this.request<NameResponseDto>({
-            url: '/name/gender',
+            url: '/name/language',
             method: 'GET',
             query,
         }, opts?.responseOpts);
